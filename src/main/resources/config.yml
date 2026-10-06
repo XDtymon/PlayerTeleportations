@@ -1,0 +1,14 @@
+
+tpaccept:
+  sender: "{prefix} &aGracz &f%target% &azaakceptował prośbę o teleportacje"
+  target: "{prefix} &aPomyślnie zaakceptowano prośbę o teleportacje od gracza &f%sender%"
+tpadeny:
+  sender: "{prefix} &cGracz &f%target% &codrzucił prośbe o teleportacje"
+  target: "{prefix} &7Pomyślnie odrzucono prośbę o teleportacje od &f%sender%"
+tpa:
+  sender: "{prefix} &aPomyślnie &7wysłano prośbo o teleportacje do gracza &f%target%"
+  target: "{prefix} &7Gracz &f%player% &7wysłał do ciebie prośbę o teleportacje"
+
+  timeout:
+    sender: "{prefix} &7Prośba o teleportacje do gracza &f%target% &cwygasła"
+    target: "{prefix} &7Prośba o teleportacje od gracza &f%player% &cwygasła"

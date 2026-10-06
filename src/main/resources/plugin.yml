@@ -1,0 +1,17 @@
+name: PlayerTeleportations
+prefix: PT
+version: '${version}'
+
+main: com.jakisniekot.playerTeleportations.PlayerTeleportations
+api-version: '26.3'
+load: POSTWORLD
+
+authors: [ JakisNieKot ]
+
+permissions:
+  playertp.tpa.accept:
+    default: false
+  playertp.tpa.deny:
+    default: false
+  playertp.tpa.send:
+    default: false
