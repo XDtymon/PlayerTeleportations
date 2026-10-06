@@ -9,6 +9,10 @@ tpa:
   sender: "{prefix} &aPomyślnie &7wysłano prośbo o teleportacje do gracza &f%target%"
   target: "{prefix} &7Gracz &f%player% &7wysłał do ciebie prośbę o teleportacje"
 
+  usageError: "{prefix} &7Użycie: &f/tpa <nickGracza>"
   timeout:
     sender: "{prefix} &7Prośba o teleportacje do gracza &f%target% &cwygasła"
     target: "{prefix} &7Prośba o teleportacje od gracza &f%player% &cwygasła"
+
+noPermission: "{prefix} &cNie masz dostępu do tej komendy!"
+noRequests: "{prefix} &cNie masz żadnych próśb o teleportacje"

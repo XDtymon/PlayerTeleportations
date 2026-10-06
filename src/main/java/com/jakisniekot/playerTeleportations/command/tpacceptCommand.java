@@ -8,6 +8,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class tpacceptCommand implements CommandExecutor {
@@ -20,9 +22,19 @@ public class tpacceptCommand implements CommandExecutor {
 
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+    public boolean onCommand(
+            @NotNull CommandSender sender,
+            @NotNull Command command,
+            @NotNull String label,
+            @NotNull String @NotNull [] args
+    ) {
 
         if (!(sender instanceof Player player)) {
+            return true;
+        }
+
+        if (!player.hasPermission("playertp.tpa.accept")) {
+            plugin.playerMessage(player, "noPermission");
             return true;
         }
 

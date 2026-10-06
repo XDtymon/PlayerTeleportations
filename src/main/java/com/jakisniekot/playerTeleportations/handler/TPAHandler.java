@@ -45,7 +45,7 @@ public class TPAHandler {
             TPARequest current = incomingByTarget.get(targetId);
             if (current != null && current.requesterId.equals(requesterId)) {
                 removeRequest(current);
-                // tu można wysłać wiadomość o wygaśnięciu do obu graczy
+
             }
         }, REQUEST_TIMEOUT_TICKS);
 
@@ -74,7 +74,6 @@ public class TPAHandler {
         TPARequest request = incomingByTarget.get(answerer.getUniqueId());
         if (request == null) return TPARequestError.NO_REQUEST;
 
-        // Usuwamy PRZED teleportacją, żeby stan był spójny nawet przy wyjątku
         removeRequest(request);
 
         Player requester = Bukkit.getPlayer(request.requesterId);
@@ -101,6 +100,11 @@ public class TPAHandler {
 
     public void teleportSequence(Player requester, Player target) {
         requester.teleport(target);
+        Map<String, String> placeholder = new HashMap<>();
+        placeholder.put("%player%", requester.getName());
+        placeholder.put("%target%", target.getName());
+        plugin.playerMessage(requester, "tpaccept.sender", placeholder);
+        plugin.playerMessage(target, "tpaccept.target", placeholder);
     }
 
     // ---- helpers ----
@@ -112,6 +116,9 @@ public class TPAHandler {
     private void removeRequest(TPARequest request) {
         if (request == null) return;
         request.timeoutTask.cancel();
+        Player requester = Bukkit.getPlayer(request.requesterId);
+        Player target = Bukkit.getPlayer(request.targetId);
+
         incomingByTarget.remove(request.targetId, request);
         outgoingByRequester.remove(request.requesterId, request);
     }

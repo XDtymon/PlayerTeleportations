@@ -21,33 +21,39 @@ public class tpaCommand implements CommandExecutor {
 
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+    public boolean onCommand(
+            @NotNull CommandSender sender,
+            @NotNull Command command,
+            @NotNull String label,
+            @NotNull String @NotNull [] args
+    ) {
 
-        if (sender instanceof Player player) {
-
-            if (!player.hasPermission("playertp.tpa.send")) {
-                //NOPERMISSION
-                return true;
-            }
-
-            if (args.length != 1) {
-                //USAGE ERROR
-                return true;
-            }
-
-            Player target = Bukkit.getPlayer(args[0]);
-
-            if (target == null) {
-                //NO TARGET
-                return true;
-            }
-
-            TPARequestError error = plugin.tpaHandler().sendRequest(player, target);
-            String messageID = null;
-            switch (error) {
-                case NONE -> messageID = "tpa.sender";
-            }
+        if (!(sender instanceof Player player)) {
+            return true;
         }
+
+        if (!player.hasPermission("playertp.tpa.send")) {
+            plugin.playerMessage(player, "noPermission");
+            return true;
+        }
+
+        if (args.length != 1) {
+            //USAGE ERROR
+            return true;
+        }
+
+        Player target = Bukkit.getPlayer(args[0]);
+        if (target == null) {
+            //NO TARGET
+            return true;
+        }
+
+        TPARequestError error = plugin.tpaHandler().sendRequest(player, target);
+        String messageID = null;
+        switch (error) {
+            case NONE -> messageID = "tpa.sender";
+        }
+
 
         return true;
     }
